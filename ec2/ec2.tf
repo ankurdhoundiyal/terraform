@@ -11,26 +11,4 @@ resource "aws_instance" "application" {
   iam_instance_profile          = "${var.iam_instance_profile}"
   user_data                     = "${var.user_data}"
   tags                          = "${merge(var.tags, map("Name", format("%s", var.instance_name)))}"
-
-#  provisioner "file" {
-#    content                     = "${var.user_data_source}"
-#    destination                 = "/home/ubuntu/user_data.sh"
-#
-#    connection {
-#      type                      = "ssh"
-#      user                      = "ubuntu"
-#      private_key               = "${file("${path.module}/../dev/devops.pem")}"
-#    }
-#  }
-#  provisioner "remote-exec" {
-#    inline                      = [
-#      "chmod +x /home/ubuntu/user_data.sh"
-#    ]
-#
-#    connection {
-#      type                      = "ssh"
-#      user                      = "ubuntu"
-#      private_key               = "${file("${path.module}/../dev/devops.pem")}"
-#    }
-#  }
 }
